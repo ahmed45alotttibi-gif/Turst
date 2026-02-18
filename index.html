@@ -73,3 +73,83 @@ style="display:none;">
     <button class="wa-btn" onclick="sendToWhatsApp()">طلب واتساب</button>
   </div>
 </div>
+
+body {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+}
+
+/* حل مشكلة زر السلة والضغط في الرئيسية */
+.mini-cart-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #2ecc71;
+  color: #000;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 999999 !important; /* الطبقة العليا جداً */
+
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  pointer-events: auto;
+}
+
+/* الصفحة الرئيسية والتنسيق */
+.main-title { text-align: center; margin-top: 80px; color: #2ecc71; }
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 20px;
+}
+
+.category-card {
+  background: #111;
+  border: 2px solid #2ecc71;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 300px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.category-card img { width: 100%; border-radius: 15px; }
+
+/* زر العودة القديم في الزاوية */
+.back-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #111;
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.top-bar { position: relative; padding: 50px 0 20px 0; text-align: center; }
+
+/* بطاقات المنتجات */
+.shop-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.item-card { background: #111; border-radius: 15px; width: 150px; padding: 10px; text-align: center; border: 1px solid #222; }
+.item-card img { width: 100%; height: auto; }
+.buy-btn { background: none; border: 1px solid #2ecc71; color: #2ecc71; width: 100%; padding: 8px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+
+/* نافذة السلة (Modal) */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000000; display: none; }
+.modal-content { background: #111; width: 85%; max-width: 320px; margin: 100px auto; padding: 25px; border-radius: 20px; border: 1px solid #2ecc71; position: relative; }
+.close-modal { position: absolute; top: 10px; left: 10px; cursor: pointer; }
+.wa-btn { background: #25d366; color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 15px; }

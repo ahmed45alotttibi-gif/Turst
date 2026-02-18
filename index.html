@@ -153,3 +153,47 @@ body {
 .modal-content { background: #111; width: 85%; max-width: 320px; margin: 100px auto; padding: 25px; border-radius: 20px; border: 1px solid #2ecc71; position: relative; }
 .close-modal { position: absolute; top: 10px; left: 10px; cursor: pointer; }
 .wa-btn { background: #25d366; color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
+
+let cart = [];
+
+function showPage(pageId) {
+  // إخفاء كل الصفحات
+  const pages = document.querySelectorAll('.page-content');
+  pages.forEach(p => p.style.display = 'none');
+  
+  // إظهار الصفحة المطلوبة
+  const target = document.getElementById(pageId);
+  if (target) {
+    target.style.display = 'block';
+  }
+}
+
+function addToCart(name) {
+  cart.push(name);
+  document.getElementById('cart-count').innerText = cart.length;
+  updateCartUI();
+  alert("✅ تم إضافة " + name + " للسلة");
+}
+
+function updateCartUI() {
+  const list = document.getElementById('cart-items');
+  list.innerHTML = "";
+  cart.forEach((item, i) => {
+    let li = document.createElement('li');
+    li.style.padding = "10px 0";
+    li.style.borderBottom = "1px solid #222";
+    li.innerText = (i + 1) + ". " + item;
+    list.appendChild(li);
+  });
+}
+
+function toggleCart() {
+  const m = document.getElementById('cart-modal');
+  m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+}
+
+function sendToWhatsApp() {
+  if (cart.length === 0) return alert("السلة فارغة!");
+  let text = "طلب جديد من متجر Turst:%0a" + cart.map((item, i) => (i+1) + "- " + item).join("%0a");
+  window.open("https://wa.me/966502519600?text=" + text); 
+}

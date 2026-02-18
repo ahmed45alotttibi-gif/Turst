@@ -1,199 +1,72 @@
-<div class="mini-cart-btn" onclick="toggleCart()">
-  🛒 <span id="cart-count">0</span>
-</div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر Turst</title>
+    <style>
+        /* هنا حطينا كود التنسيق داخل style عشان يضبط */
+        body { background-color: #000; color: #fff; margin: 0; font-family: sans-serif; direction: rtl; }
+        .mini-cart-btn { position: fixed; top: 15px; left: 15px; background: #2ecc71; color: #000; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 12px; cursor: pointer; z-index: 999999 !important; }
+        .main-title { text-align: center; margin-top: 80px; color: #2ecc71; }
+        .category-container { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px; }
+        .category-card { background: #111; border: 2px solid #2ecc71; border-radius: 20px; width: 90%; max-width: 300px; padding: 15px; text-align: center; cursor: pointer; }
+        .category-card img { width: 100%; border-radius: 15px; }
+        .page-content { display: none; padding: 20px; text-align: center; }
+        .active { display: block; }
+        .shop-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 50px; }
+        .item-card { background: #111; border: 1px solid #333; border-radius: 15px; width: 150px; padding: 10px; }
+        .item-card img { width: 100%; border-radius: 10px; }
+        .buy-btn { background: none; border: 1px solid #2ecc71; color: #2ecc71; width: 100%; padding: 8px; border-radius: 8px; margin-top: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
 
-<div id="site-wrapper">
-  <div id="main-menu" class="page-content active">
-    <h1 class="main-title">متجر Turst</h1>
-    <div class="category-container">
-      <div class="category-card" onclick="showPage('adopt-page')">
-        <img src="https://i.postimg.cc/9fM7T1xD/98e51025-b04f-4c96-afea-055e407ef71c.jpg">
-        <div class="category-label">قسم Adopt Me</div>
-      </div>
-      <div class="category-card" onclick="showPage('mm2-page')">
-        <img src="https://i.postimg.cc/nc4BtXjn/ba15c27a-3910-4e70-98a1-9693506fc289.jpg">
-        <div class="category-label">قسم MM2</div>
-      </div>
+    <div class="mini-cart-btn" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+
+    <div id="main-menu" class="page-content active">
+        <h1 class="main-title">متجر Turst</h1>
+        <div class="category-container">
+            <div class="category-card" onclick="showPage('adopt-page')">
+                <img src="https://marmarita-store.com/images/adoptme-category.png">
+                <p>قسم Adopt Me</p>
+            </div>
+            <div class="category-card" onclick="showPage('mm2-page')">
+                <img src="https://marmarita-store.com/images/mm2-category.png">
+                <p>قسم MM2</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div id="adopt-page" class="page-content" style="display:none;">
-    <div class="top-bar">
-      <button class="back-btn" onclick="showPage('main-menu')">⬅ العودة</button>
-      <h2 class="section-header">Adopt Me</h2>
+    <div id="adopt-page" class="page-content">
+        <button onclick="showPage('main-menu')">⬅ عودة</button>
+        <div class="shop-grid">
+            <div class="item-card">
+                <img src="https://vignette.wikia.nocookie.net/adoptme/images/a/a4/Fly_Potion.png">
+                <h3>Fly Potion</h3>
+                <p>25 SAR</p>
+                <button class="buy-btn" onclick="addToCart('Fly Potion')">إضافة</button>
+            </div>
+            <div class="item-card">
+                <img src="https://vignette.wikia.nocookie.net/adoptme/images/a/a2/Ride_Potion.png">
+                <h3>Ride Potion</h3>
+                <p>15 SAR</p>
+                <button class="buy-btn" onclick="addToCart('Ride Potion')">إضافة</button>
+            </div>
+        </div>
     </div>
-    <div class="shop-grid">
-      <div class="item-card">
-  <img src="https://i.postimg.cc/MK5WjLhs/7ff7c6b4-6769-497e-9d02-67bcd6260117.jpg">
-  <h3>Fly Potion</h3>
-  <p>SAR 7</p>
-  <button class="buy-btn" onclick="addToCart('Fly Potion')">إضافة للسلة</button>
-</div>
 
-      <div class="item-card">
-  <img src="https://i.postimg.cc/m2TLnk7v/bbd85024-6c3e-4f0e-9739-1e72e5e90630.jpg">
-  <h3>Ride Potion</h3>
-  <p>SAR 3</p>
-  <button class="buy-btn" onclick="addToCart('Ride Potion')">إضافة للسلة</button>
-</div>
-
-      <div class="item-card"><img src="https://i.postimg.cc/V6fNyNCF/2f963929-d034-4ccf-aef9-5c7b1c542033.jpg"><h3>Forest Ferry RF</h3><p>16 SAR</p><button class="buy-btn" onclick="addToCart('Forest Ferry RF')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/J0M9nyqp/81665b1c-f6c4-48e3-bf5c-e5b1bdd042bc.jpg"><h3>Dog RNF</h3><p>7 SAR</p><button class="buy-btn" onclick="addToCart('Dog RNF')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/PJpxrR5d/a286fb3e-f068-4e0b-a3a7-c0f2a96a6271.jpg"><h3>Unicorn RNF</h3><p>28 SAR</p><button class="buy-btn" onclick="addToCart('Unicorn RNF')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/SjbyQQPj/a0006ef0-9dc8-4b37-99a5-bcd23591cac0.jpg"><h3>Unicorn RF</h3><p>14 SAR</p><button class="buy-btn" onclick="addToCart('Unicorn RF')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/FRfd7RTP/2e2a176c-272b-4c37-8ace-0f372017052e.jpg"><h3>Kangaroo RF</h3><p>40 SAR</p><button class="buy-btn" onclick="addToCart('Kangaroo RF')">إضافة للسلة</button></div>
-      
-      <div class="item-card"><img src="https://i.postimg.cc/PrHJk2nm/fbabab37-1bd1-4204-8989-0f1a71379f41.jpg"><h3>Turtle RF</h3><p>48 SAR</p><button class="buy-btn" onclick="addToCart('Turtle RF')">إضافة للسلة</button></div>
-    </div>
-  </div>
-
-<div id="mm2-page" class="page-content" 
-style="display:none;">
-    <div class="top-bar">
-      <button class="back-btn" onclick="showPage('main-menu')">⬅ العودة</button>
-      <h2 class="section-header">MM2 الأسلحة</h2>
-    </div>
-    <div class="shop-grid">
-      <div class="item-card"><img src="https://i.postimg.cc/C5qcHwxm/55c8b1b8-8f07-427e-9005-f2e9b9933529.jpg"><h3>Icebreaker Set</h3><p>15 SAR</p><button class="buy-btn" onclick="addToCart('Icebreaker Set')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/DzCv1hqN/e27b0799-9be3-4865-88e0-e8e84b4cb918.jpg"><h3>American Set</h3><p>9 SAR</p><button class="buy-btn" onclick="addToCart('American Set')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/k5SDmZGy/01699c74-d34b-471c-ad71-1cabd1d97e7e.jpg"><h3>عرض خاص</h3><p>10 SAR</p><button class="buy-btn" onclick="addToCart('عرض خاص')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/k44rCtRS/59612730-4bf1-416b-9d87-59f6b0aba07b.jpg"><h3>SugarGun+Candy</h3><p>15 SAR</p><button class="buy-btn" onclick="addToCart('Sugar Gun')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/CLp7pT1Y/546b62ad-84e9-4519-af3c-ffcff5485f75.jpg"><h3>Chroma Candle</h3><p>7 SAR</p><button class="buy-btn" onclick="addToCart('Chroma Candle')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/xTMkvrJY/1c6d4c32-d76c-453b-8959-88d94e8a924c.jpg"><h3>icepiercer</h3><p>25 SAR</p><button class="buy-btn" onclick="addToCart('icepiercer')">إضافة للسلة</button></div>
-      <div class="item-card"><img src="https://i.postimg.cc/cHgSYn1L/3c4498d8-65a6-4b5a-bec2-2b7c14a1f63c.jpg"><h3>FANG</h3><p>3 SAR</p><button class="buy-btn" onclick="addToCart('FANG')">إضافة للسلة</button></div>
-    </div>
-  </div>
-</div>
-
-<div id="cart-modal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close" onclick="toggleCart()">❌</span>
-    <h3>السلة</h3>
-    <ul id="cart-items"></ul>
-    <button class="wa-btn" onclick="sendToWhatsApp()">طلب واتساب</button>
-  </div>
-</div>
-
-body {
-  background-color: #000;
-  color: #fff;
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  direction: rtl;>
-}
-
-/* حل مشكلة زر السلة والضغط في الرئيسية */
-.mini-cart-btn {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: #2ecc71;
-  color: #000;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  cursor: pointer;
-  z-index: 999999 !important; /* الطبقة العليا جداً */
-
-  font-size: 24px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  pointer-events: auto;
-}
-
-/* الصفحة الرئيسية والتنسيق */
-.main-title { text-align: center; margin-top: 80px; color: #2ecc71; }
-
-.category-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  padding: 20px;
-}
-
-.category-card {
-  background: #111;
-  border: 2px solid #2ecc71;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 300px;
-  padding: 15px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.category-card img { width: 100%; border-radius: 15px; }
-
-/* زر العودة القديم في الزاوية */
-.back-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: #111;
-  border: 1px solid #2ecc71;
-  color: #2ecc71;
-  padding: 5px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.top-bar { position: relative; padding: 50px 0 20px 0; text-align: center; }
-
-/* بطاقات المنتجات */
-.shop-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-.item-card { background: #111; border-radius: 15px; width: 150px; padding: 10px; text-align: center; border: 1px solid #222; }
-.item-card img { width: 100%; height: auto; }
-.buy-btn { background: none; border: 1px solid #2ecc71; color: #2ecc71; width: 100%; padding: 8px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-
-/* نافذة السلة (Modal) */
-.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000000; display: none; }
-.modal-content { background: #111; width: 85%; max-width: 320px; margin: 100px auto; padding: 25px; border-radius: 20px; border: 1px solid #2ecc71; position: relative; }
-.close-modal { position: absolute; top: 10px; left: 10px; cursor: pointer; }
-.wa-btn { background: #25d366; color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
-
-let cart = [];
-
-function showPage(pageId) {
-  // إخفاء كل الصفحات
-  const pages = document.querySelectorAll('.page-content');
-  pages.forEach(p => p.style.display = 'none');
-  
-  // إظهار الصفحة المطلوبة
-  const target = document.getElementById(pageId);
-  if (target) {
-    target.style.display = 'block';
-  }
-}
-
-function addToCart(name) {
-  cart.push(name);
-  document.getElementById('cart-count').innerText = cart.length;
-  updateCartUI();
-  alert("✅ تم إضافة " + name + " للسلة");
-}
-
-function updateCartUI() {
-  const list = document.getElementById('cart-items');
-  list.innerHTML = "";
-  cart.forEach((item, i) => {
-    let li = document.createElement('li');
-    li.style.padding = "10px 0";
-    li.style.borderBottom = "1px solid #222";
-    li.innerText = (i + 1) + ". " + item;
-    list.appendChild(li);
-  });
-}
-
-function toggleCart() {
-  const m = document.getElementById('cart-modal');
-  m.style.display = (m.style.display === 'block') ? 'none' : 'block';
-}
-
-function sendToWhatsApp() {
-  if (cart.length === 0) return alert("السلة فارغة!");
-  let text = "طلب جديد من متجر Turst:%0a" + cart.map((item, i) => (i+1) + "- " + item).join("%0a");
-  window.open("https://wa.me/966502519600?text=" + text); 
-}
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+        let cart = [];
+        function addToCart(name) {
+            cart.push(name);
+            document.getElementById('cart-count').innerText = cart.length;
+            alert("تمت الإضافة!");
+        }
+    </script>
+</body>
+</html>

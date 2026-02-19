@@ -62,54 +62,84 @@
     background-color: #000;
     color: #fff;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     direction: rtl;
+    overflow-x: hidden; /* يمنع التعرج الجانبي */
+  }
+
+  /* التأكد من أن الحاوية لا تغطي الشاشة بشكل خاطئ */
+  #site-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* أهم جزء: جعل الكروت قابلة للنقر فوق أي طبقة أخرى */
+  .category-card {
+    background: #111;
+    border: 2px solid #2ecc71;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 300px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer !important; /* إجبار الماوس على التغير */
+    position: relative;
+    z-index: 10; /* رفع الكرت فوق أي طبقة شفافة */
+    margin: 10px auto;
+    display: block;
+    pointer-events: auto !important; /* تفعيل اللمس إجبارياً */
+  }
+
+  .category-card img {
+    width: 100%;
+    border-radius: 15px;
+    pointer-events: none; /* جعل الصورة لا تعترض اللمس */
   }
 
   .mini-cart-btn {
-    position: fixed; top: 15px; left: 15px;
-    background: #2ecc71; color: #000;
-    width: 55px; height: 55px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 12px; cursor: pointer; z-index: 1000;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #2ecc71;
+    color: #000;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 9999; /* زر السلة يبقى في الأعلى دائماً */
+    cursor: pointer;
   }
 
-  .category-container { display: flex; flex-direction: column; align-items: center; gap: 20px; padding-top: 20px; }
-  
-  .category-card {
-    background: #111; border: 2px solid #2ecc71;
-    border-radius: 20px; width: 80%; max-width: 300px;
-    padding: 15px; text-align: center; cursor: pointer;
-    transition: 0.3s;
+  /* إخفاء الصفحات غير النشطة تماماً لضمان عدم اعتراضها للمس */
+  .page-content {
+    display: none;
   }
-
-  .category-card:active { transform: scale(0.95); }
-  .category-card img { width: 100%; border-radius: 15px; pointer-events: none; }
-
-  .page-content { padding: 20px; }
-  .shop-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-  .item-card { background: #111; border: 1px solid #2ecc71; border-radius: 15px; width: 140px; padding: 10px; text-align: center; }
-  .item-card img { width: 100%; border-radius: 10px; }
-  .buy-btn { background: #2ecc71; border: none; color: #00; width: 100%; padding: 8px; border-radius: 5px; cursor: pointer; margin-top: 5px; }
   
-  .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; display: none; }
-  .modal-content { background: #111; width: 80%; margin: 50px auto; padding: 20px; border-radius: 20px; border: 1px solid #2ecc71; }
-  .wa-btn { background: #25d366; color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; margin-top: 10px; cursor: pointer; }
+  .page-content.active {
+    display: block !important;
+  }
 </style>
+
 
 <script>
 let cart = [];
 
 function showPage(pageId) {
-  // إخفاء كل الصفحات
+  // إخفاء كل الصفحات وإزالة كلاس النشاط
   const pages = document.querySelectorAll('.page-content');
-  pages.forEach(p => p.style.display = 'none');
+  pages.forEach(p => {
+    p.style.display = 'none';
+    p.classList.remove('active');
+  });
   
-  // إظهار الصفحة المطلوبة
+  // إظهار الصفحة المطلوبة وإضافة كلاس النشاط
   const target = document.getElementById(pageId);
   if (target) {
     target.style.display = 'block';
-    window.scrollTo(0,0); // للرجوع لأعلى الصفحة
+    target.classList.add('active');
+    window.scrollTo(0, 0);
   }
 }
 
